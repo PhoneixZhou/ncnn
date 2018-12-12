@@ -53,6 +53,7 @@ else()
     add_definitions(-Wall -Wextra -Wno-unused-function)
 
     add_definitions(-fPIC)
+    add_definitions(-fPIE)
     if(CMAKE_BUILD_TYPE MATCHES "(Release|RELEASE|release)")
         add_definitions(-Ofast)
 
@@ -74,7 +75,7 @@ endif()
 if(ANDROID)
     # disable shared library on android
     set_property(GLOBAL PROPERTY TARGET_SUPPORTS_SHARED_LIBS FALSE)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-rtti -fno-exceptions")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-rtti -fno-exceptions -pie -fPIE")
 elseif(IOS)
     # disable shared library on xcode ios
     set_property(GLOBAL PROPERTY TARGET_SUPPORTS_SHARED_LIBS FALSE)
@@ -83,8 +84,8 @@ endif()
 
 ##############################################
 
-# add_subdirectory(examples)
-# add_subdirectory(benchmark)
+add_subdirectory(examples)
+add_subdirectory(benchmark)
 add_subdirectory(src)
 if(NOT ANDROID AND NOT IOS)
 add_subdirectory(tools)

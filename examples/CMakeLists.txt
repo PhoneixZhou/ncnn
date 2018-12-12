@@ -1,4 +1,11 @@
 
+if(NOT ANDROID AND NOT IOS)
+set(OpenCV_DIR /data/devtools/opencv-3.4.0/build/)
+else()
+set(OpenCV_DIR /data/devtools/opencv_3_4_1_android/sdk/native/jni/)
+endif()
+
+
 find_package(OpenCV QUIET COMPONENTS core highgui imgproc imgcodecs)
 if(NOT OpenCV_FOUND)
     find_package(OpenCV REQUIRED COMPONENTS core highgui imgproc)
@@ -33,3 +40,6 @@ target_link_libraries(squeezenetssd ncnn ${OpenCV_LIBS})
 
 add_executable(shufflenetv2 shufflenetv2.cpp)
 target_link_libraries(shufflenetv2 ncnn ${OpenCV_LIBS})
+
+add_executable(alexnet alexnet.cpp)
+target_link_libraries(alexnet ncnn ${OpenCV_LIBS})

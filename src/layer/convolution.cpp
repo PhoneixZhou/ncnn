@@ -190,7 +190,7 @@ int Convolution::forward(const Mat& bottom_blob, Mat& top_blob, const Option& op
     int channels = bottom_blob.c;
     size_t elemsize = bottom_blob.elemsize;
 
-//     fprintf(stderr, "Convolution input %d x %d  pad = %d %d  ksize=%d %d  stride=%d %d\n", w, h, pad_w, pad_h, kernel_w, kernel_h, stride_w, stride_h);
+    fprintf(stderr, "Convolution input %d x %d x %d pad = %d %d  ksize=%d %d  stride=%d %d\n", w, h, channels, pad_w, pad_h, kernel_w, kernel_h, stride_w, stride_h);
 
     const int kernel_extent_w = dilation_w * (kernel_w - 1) + 1;
     const int kernel_extent_h = dilation_h * (kernel_h - 1) + 1;
